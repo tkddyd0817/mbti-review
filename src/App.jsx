@@ -7,10 +7,10 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Profile from './pages/Profile';
-import TestPage from './pages/TestPage';
-import TestResultPage from './pages/TestResultPage';
-import TestResultList from './pages/TestResultList';
-import ProtectedRoute from './components/ProtectedRoute';
+// import TestPage from './pages/TestPage';
+// import TestResultPage from './pages/TestResultPage';
+// import TestResultList from './pages/TestResultList';
+// import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   // 1. 사용자 상태 초기화
@@ -43,9 +43,9 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
           <Route path="/profile" element={<Profile user={user} setUser={setUser} />} />
-          <Route path="/test" element={<TestPage user={user} />} />
+          {/* <Route path="/test" element={<TestPage user={user} />} />
           <Route path="/results" element={<TestResultList user={user} />} />
-          <Route path="/result/:id" element={<TestResultPage user={user} />} />
+          <Route path="/result/:id" element={<TestResultPage user={user} />} /> */}
         </Route>
       </Routes>
     </Layout>
