@@ -36,8 +36,12 @@ function App() {
   }, [user]); // user 상태가 변경될 때마다 실행
 
   return (
-    <Layout isAuthenticated={isAuthenticated} setUser={setUser}>
-      <Routes>
+    <Routes>
+      <Route
+        element={<Layout isAuthenticated={isAuthenticated} setUser={setUser} />}
+      >
+        {/* // <Layout isAuthenticated={isAuthenticated} setUser={setUser}> */}
+
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login setUser={setUser} />} />
         <Route path="/signup" element={<Signup />} />
@@ -46,12 +50,12 @@ function App() {
             path="/profile"
             element={<Profile user={user} setUser={setUser} />}
           />
-          {/* <Route path="/test" element={<TestPage user={user} />} />
-          <Route path="/results" element={<TestResultList user={user} />} />
-          <Route path="/result/:id" element={<TestResultPage user={user} />} /> */}
+            {/* <Route path="/test" element={<TestPage user={user} />} />
+           <Route path="/results" element={<TestResultList user={user} />} />
+          <Route path="/result/:id" element={<TestResultPage user={user} />} />   */}
         </Route>
-      </Routes>
-    </Layout>
+      </Route>
+    </Routes>
   );
 }
 
