@@ -23,12 +23,19 @@ const Login = ({ setUser }) => {
   };
 
   return (
-    <div>
-      <h1>로그인</h1>
-      <AuthForm mode="login" onSubmit={handleLogin} />
-      <p>
-        계정이 없으신가요? <Link to="/signup">회원가입</Link>
-      </p>
+     <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="bg-white shadow-lg rounded-lg p-8 w-96">
+        <h1 className="text-2xl font-bold text-gray-800 text-center mb-6">
+          로그인
+        </h1>
+        <AuthForm mode="login" onSubmit={handleLogin} />
+        <p className="text-center text-sm text-gray-500 mt-4">
+          계정이 없으신가요?{" "}
+          <Link to="/signup" className="text-red-500 font-bold hover:underline">
+            회원가입
+          </Link>
+        </p>
+      </div>
     </div>
   );
 };
