@@ -1,4 +1,46 @@
 import { useState } from "react";
+import styled from "styled-components";
+
+const Form = styled.form``;
+
+const InputBlock = styled.div`
+  margin-bottom: 1rem;
+  
+`;
+
+const Input = styled.input`
+margin-left: 1.5rem;
+height: 2rem;
+  width: 80%;
+  padding: 0.5rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  outline: none;
+  transition: box-shadow 0.2s, border-color 0.2s;
+  &:focus {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 2px #fecaca;
+  }
+`;
+
+const SubmitButton = styled.button`
+margin-left: 1.5rem;
+height: 3rem;
+  width: 88%;
+  padding: 0.5rem 0;
+  font-weight: bold;
+  color: #fff;
+  background: #ef4444;
+  border: none;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  transition: background 0.2s;
+  cursor: pointer;
+  &:hover {
+    background: #dc2626;
+  }
+`;
 
 const AuthForm = ({ mode, onSubmit }) => {
   const [formData, setFormData] = useState({
@@ -21,107 +63,45 @@ const AuthForm = ({ mode, onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="mb-4">
-        <input
+    <Form onSubmit={handleSubmit}>
+      <InputBlock>
+        <Input
           type="text"
           name="userid"
           value={formData.userid}
           onChange={handleChange}
           placeholder="아이디"
-          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
           required
         />
-      </div>
-      <div className="mb-4">
-        <input
+      </InputBlock>
+      <InputBlock>
+        <Input
           type="password"
           name="password"
           value={formData.password}
           onChange={handleChange}
           placeholder="비밀번호"
-          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
           required
         />
-      </div>
+      </InputBlock>
       {/* 회원가입 모드일 때만 닉네임 입력 */}
       {mode === "signup" && (
-        <div className="mb-6">
-          <input
+        <InputBlock style={{ marginBottom: "1.5rem" }}>
+          <Input
             type="text"
             name="nickname"
             value={formData.nickname}
             onChange={handleChange}
             placeholder="닉네임"
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
             required
           />
-        </div>
+        </InputBlock>
       )}
-      <button
-        type="submit"
-        className="w-full bg-red-500 text-white py-2 rounded-md font-bold hover:bg-red-600 transition"
-      >
+      <SubmitButton type="submit">
         {mode === "login" ? "로그인" : "회원가입"}
-      </button>
-    </form>
+      </SubmitButton>
+    </Form>
   );
 };
 
 export default AuthForm;
-
-// import  { useState } from 'react';
-
-// const AuthForm = ({ mode, onSubmit }) => {
-//   const [formData, setFormData] = useState({
-//     id: '',
-//     password: '',
-//     nickname: '',
-//   });
-
-//   const handleChange = (e) => {
-//     setFormData({
-//       ...formData,
-//       [e.target.name]: e.target.value,
-//     });
-//   };
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     onSubmit(formData);
-//   };
-
-//   return (
-//     <form onSubmit={handleSubmit}>
-//       <input
-//         type="text"
-//         name="id"
-//         value={formData.id}
-//         onChange={handleChange}
-//         placeholder="아이디"
-//         required
-//       />
-//       <input
-//         type="password"
-//         name="password"
-//         value={formData.password}
-//         onChange={handleChange}
-//         placeholder="비밀번호"
-//         required
-//       />
-//       {mode === 'signup' && (
-//         <input
-//           type="text"
-//           name="nickname"
-//           value={formData.nickname}
-//           onChange={handleChange}
-//           placeholder="닉네임"
-//           required
-//         />
-//       )}
-//       <button type="submit">{mode === 'login' ? '로그인' : '회원가입'}</button>
-//     </form>
-//   );
-// };
-
-// export default AuthForm;

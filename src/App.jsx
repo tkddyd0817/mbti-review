@@ -50,8 +50,8 @@ function App() {
             path="/profile"
             element={<Profile user={user} setUser={setUser} />}
           />
-            {/* <Route path="/test" element={<TestPage user={user} />} />
-           <Route path="/results" element={<TestResultList user={user} />} />
+            {/* <Route path="/test" element={<TestPage user={user} />} />  */}
+          {/* <Route path="/results" element={<TestResultList user={user} />} />
           <Route path="/result/:id" element={<TestResultPage user={user} />} />   */}
         </Route>
       </Route>

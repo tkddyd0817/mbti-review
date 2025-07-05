@@ -1,7 +1,49 @@
-
 import AuthForm from "../components/AuthForm";
 import { login, getUserProfile } from "../api/auth";
 import { useNavigate, Link } from "react-router-dom";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f9fafb;
+   margin-left: 30rem;
+`;
+
+const Card = styled.div`
+  background: #fff;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border-radius: 0.5rem;
+  padding: 2rem;
+  width: 24rem;
+`;
+
+const Title = styled.h1`
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1f2937;
+  text-align: center;
+  margin-bottom: 1.5rem;
+`;
+
+const InfoText = styled.p`
+  text-align: center;
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-top: 1rem;
+`;
+
+const StyledLink = styled(Link)`
+  color: #ef4444;
+  font-weight: bold;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
 
 const Login = ({ setUser }) => {
   const navigate = useNavigate();
@@ -15,28 +57,23 @@ const Login = ({ setUser }) => {
       // 사용자 상태 업데이트 (토큰 포함)
       setUser({ ...userData, token: data.accessToken });
       // 페이지 이동
-      navigate('/profile');
+      navigate("/profile");
     } catch (error) {
-        console.error(error)
-      alert('로그인에 실패했습니다.');
+      console.error(error);
+      alert("로그인에 실패했습니다.");
     }
   };
 
   return (
-     <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="bg-white shadow-lg rounded-lg p-8 w-96">
-        <h1 className="text-2xl font-bold text-gray-800 text-center mb-6">
-          로그인
-        </h1>
+    <Wrapper>
+      <Card>
+        <Title>로그인</Title>
         <AuthForm mode="login" onSubmit={handleLogin} />
-        <p className="text-center text-sm text-gray-500 mt-4">
-          계정이 없으신가요?{" "}
-          <Link to="/signup" className="text-red-500 font-bold hover:underline">
-            회원가입
-          </Link>
-        </p>
-      </div>
-    </div>
+        <InfoText>
+          계정이 없으신가요? <StyledLink to="/signup">회원가입</StyledLink>
+        </InfoText>
+      </Card>
+    </Wrapper>
   );
 };
 

@@ -1,7 +1,49 @@
+import AuthForm from "../components/AuthForm";
+import { register } from "../api/auth";
+import { useNavigate, Link } from "react-router-dom";
+import styled from "styled-components";
 
-import AuthForm from '../components/AuthForm';
-import { register } from '../api/auth';
-import { useNavigate, Link } from 'react-router-dom';
+const Wrapper = styled.div`
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f9fafb;
+   margin-left: 30rem;
+`;
+
+const Card = styled.div`
+  background: #fff;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border-radius: 0.5rem;
+  padding: 2rem;
+  width: 30rem;
+`;
+
+const Title = styled.h1`
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1f2937;
+  text-align: center;
+  margin-bottom: 1.5rem;
+`;
+
+const InfoText = styled.p`
+  text-align: center;
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-top: 1rem;
+`;
+
+const StyledLink = styled(Link)`
+  color: #ef4444;
+  font-weight: bold;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -9,34 +51,24 @@ const Signup = () => {
   const handleSignup = async (formData) => {
     try {
       await register(formData);
-      alert('회원가입이 완료되었습니다.');
-      navigate('/login');
+      alert("회원가입이 완료되었습니다.");
+      navigate("/login");
     } catch (error) {
-        console.error(error)
-      alert('회원가입에 실패했습니다.');
+      console.error(error);
+      alert("회원가입에 실패했습니다.");
     }
   };
 
   return (
-     <>
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="bg-white shadow-lg rounded-lg p-8 w-96">
-          <h1 className="text-2xl font-bold text-gray-800 text-center mb-6">
-            회원가입
-          </h1>
-          <AuthForm mode="signup" onSubmit={handleSignup} />
-          <p className="text-center text-sm text-gray-500 mt-4">
-            이미 계정이 있으신가요?{" "}
-            <Link
-              to="/login"
-              className="text-red-500 font-bold hover:underline"
-            >
-              로그인
-            </Link>
-          </p>
-        </div>
-      </div>
-    </>
+    <Wrapper>
+      <Card>
+        <Title>회원가입</Title>
+        <AuthForm mode="signup" onSubmit={handleSignup} />
+        <InfoText>
+          이미 계정이 있으신가요? <StyledLink to="/login">로그인</StyledLink>
+        </InfoText>
+      </Card>
+    </Wrapper>
   );
 };
 
