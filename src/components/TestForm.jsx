@@ -5,10 +5,13 @@ import styled from "styled-components";
 const Form = styled.form`
   background: #fff;
   border-radius: 0.5rem;
-  padding: 1.5rem;
+  padding: 5rem;
+  margin-left: 25rem;
+  width:80vh;
 `;
 
 const QuestionBlock = styled.div`
+
   margin-bottom: 1.5rem;
 `;
 
